@@ -16,6 +16,16 @@ def is_ip_in_nets(ip, nets):
 
 
 class BlockIPMiddleware(object):
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        self.process_request(request)
+
+        response = self.get_response(request)
+
+        return response
+
     def process_request(self, request):
         is_banned = False
 
