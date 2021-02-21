@@ -1,4 +1,6 @@
+from django.conf import settings
 from django.core.cache import cache
+from django.core.exceptions import PermissionDenied
 from django.http import HttpResponseForbidden
 
 from block_ip.models import BlockIP
@@ -44,7 +46,11 @@ class BlockIPMiddleware(object):
                 break
 
         if is_banned:
-            # delete sessions when denied
-            for k in request.session.keys():
-                del request.session[k]
-            return HttpResponseForbidden("")
+            if hasattr(request, 'session'):
+                request.session.flush()
+
+            raise_exception = getattr(settings, 'BLOCK_IP_REDIRECT_TO_403_FORBIDDEN', True)
+            if raise_exception:
+                raise PermissionDenied()
+            else:
+                return HttpResponseForbidden(None)

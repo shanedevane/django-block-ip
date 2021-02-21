@@ -1,10 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from setuptools import setup
-import re
 import os
-import sys
+
+from setuptools import setup
 
 
 def get_packages(package):
@@ -34,13 +33,13 @@ def get_package_data(package):
 
 setup(
     name='django-block-ip',
-    version='0.2.0',
-    url='http://github.com/philipn/django-block-ip',
+    version='0.3.0',
+    url='http://github.com/shanedevane/django-block-ip',
     license='BSD',
     description='Simple IP and IP-range blocking for Django',
     long_description=open('README.md', 'r').read(),
-    author='Philip Neustrom',
-    author_email='philipn@gmail.com',
+    author='Philip Neustrom, Shane Devane',
+    author_email='philipn@gmail.com, shanedevane@gmail.com',
     packages=get_packages('block_ip'),
     package_data=get_package_data('.'),
     install_requires=[

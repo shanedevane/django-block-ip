@@ -8,7 +8,7 @@ Usage
 
 1. `pip install django-block-ip`
 1. Add `block_ip` to your `INSTALLED_APPS`.
-1. Add `block_ip.middleware.BlockIPMiddleware` to your `MIDDLEWARE_CLASSES`.
+1. Add `block_ip.middleware.BlockIPMiddleware` to your `MIDDLEWARE_CLASSES` after "django.contrib.sessions.middleware.SessionMiddleware",
 1. Run `makemigrations`.
 1. Run `migrate`.
 1. Add one or more entries to the `BlockIP` list in the admin.
